@@ -8,7 +8,6 @@ import com.electronwill.nightconfig.core.file.CommentedFileConfigBuilder;
 import com.electronwill.nightconfig.core.file.GenericBuilder;
 
 // TODO: If a config property is set to the wrong class or is just outright missing the game will genuinely just crash.
-// TODO: Create github repository
 
 public class NoSpawnStructuresConfig {
 	public static Integer CONFIG_VERSION = 1;
@@ -89,6 +88,3 @@ public class NoSpawnStructuresConfig {
 		config.setComment("STRUCTURE_LIST","\n A list of structures to either allow through (BLACKLIST = false) or to prevent (BLACKLIST = true)\n Takes the form of the structure resource location, or the same id you use when using /locate.\n Does not work with tags.");
 	}
 }
-
-// Now tell me why every single config library I've looked at for NeoForge 1.21.1 doesn't match the simple goal of just reading a json file really early?
-// I'd try to use the default NeoForge, but you can't register and use those before mod initialization, and I'm trying to configure a mixin here.
