@@ -2,7 +2,7 @@
 ![Poorly drawn Minecraft Steve squints while blocking the sun with his hand, asking "Where?" with a sprite of a Plains biome containing a Village house. The background is the same sprite, scaled up, without the house.](src/main/resources/icon.png)
 No Spawn Structures
 ---
-([Modrinth](https://modrinth.com/mod/nospawnstructs))\
+([Curseforge](https://www.curseforge.com/minecraft/mc-mods/nospawnstructs)/[Modrinth](https://modrinth.com/mod/nospawnstructs))\
 A small mod to prevent structures from spawning with a configurable "exclusion zone" surrounding the world origin (`x0`,`z0`), or what is effectively spawn for most worlds.
 
 Also allows whitelisting some structures so that they can still spawn inside the exclusion zone, or blacklisting structures to prevent them from spawning inside the exclusion zone.
