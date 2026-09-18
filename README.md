@@ -1,17 +1,18 @@
 
-![](src/main/resources/icon.png)
+![Poorly drawn Minecraft Steve squints while blocking the sun with his hand, asking "Where?" with a sprite of a Plains biome containing a Village house. The background is the same sprite, scaled up, without the house.](src/main/resources/icon.png)
 No Spawn Structures
 ---
-An small mod to prevent structures from spawning with a configurable "exclusion zone" surrounding the world origin (x0 z0), or effectively spawn for most worlds.
+([Modrinth](https://modrinth.com/mod/nospawnstructs))\
+A small mod to prevent structures from spawning with a configurable "exclusion zone" surrounding the world origin (`x0`,`z0`), or what is effectively spawn for most worlds.
 
-Also allows whitelisting some structures so that they can still spawn inside the exclusion zone, or blacklisting some structures to prevent them from spawning inside the exclusion zone.
+Also allows whitelisting some structures so that they can still spawn inside the exclusion zone, or blacklisting structures to prevent them from spawning inside the exclusion zone.
 
-Particularly useful for preventing structures that are supposed to be rare spawning right next to spawn inside modpacks.
+The mod is particularly useful for preventing rare structures from spawning right next to spawn within modpacks.
 
 ## Modloader Compatibility
-This is a 1.21.1 NeoForge mod.
+This is a NeoForge mod for Minecraft 1.21.1.
 
-I have zero plans to port to Fabric. If you want a Fabric version, try out 7bbbbbbb's [No Structure at Spawn](https://github.com/7bbbbbbb/no_structure_at_spawn) ([Curse](https://www.curseforge.com/minecraft/mc-mods/no-structure-at-spawn)/[Modrinth](https://modrinth.com/mod/no-structure-at-spawn))
+I have zero plans to port to Fabric. If you want a Fabric version, try out 7bbbbbbb's [No Structure at Spawn](https://github.com/7bbbbbbb/no_structure_at_spawn) ([Curseforge](https://www.curseforge.com/minecraft/mc-mods/no-structure-at-spawn)/[Modrinth](https://modrinth.com/mod/no-structure-at-spawn))
 
 I might backport/forwardport to other major modpack versions. Keyword might.
 
