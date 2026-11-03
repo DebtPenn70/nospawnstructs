@@ -2,10 +2,11 @@ package com.debtpenn70.nospawnstructs.mixin;
 
 import com.debtpenn70.nospawnstructs.NoSpawnStructures;
 import com.debtpenn70.nospawnstructs.NoSpawnStructuresConfig;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 
 import net.minecraft.world.level.chunk.ChunkGenerator;
@@ -27,8 +28,8 @@ public abstract class ChunkGeneratorMixin {
 	private static Boolean BLACKLIST = NoSpawnStructures.C_BLACKLIST;
 	private static Integer LOGGING_LEVEL = NoSpawnStructures.C_LOGGING_LEVEL;
 
-	@WrapMethod(method = "tryGenerateStructure")
-	private boolean preventStructure(
+	@Inject(at=@At("HEAD"),method = "Lnet/minecraft/world/level/chunk/ChunkGenerator;tryGenerateStructure(Lnet/minecraft/world/level/levelgen/structure/StructureSet$StructureSelectionEntry;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;JLnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/SectionPos;)Z", cancellable = true)
+	private void preventStructure(
 		StructureSelectionEntry structureSelectionEntry,
 		StructureManager structureManager,
 		RegistryAccess registryAccess,
@@ -38,7 +39,7 @@ public abstract class ChunkGeneratorMixin {
 		ChunkAccess chunkAccess,
 		ChunkPos chunkPos,
 		SectionPos sectionPos,
-		Operation<Boolean> original
+		CallbackInfoReturnable<Boolean> callback
 	){
 		double dist = 0;
 		switch(SHAPE){
@@ -60,28 +61,26 @@ public abstract class ChunkGeneratorMixin {
 					if(LOGGING_LEVEL > 1){
 						NoSpawnStructures.LOGGER.info("Blocked spawning at x" + Integer.toString(chunkPos.x) + " z" + Integer.toString(chunkPos.z) + " of structure \"" + struct + "\"");
 					}
-					return false;
+					callback.setReturnValue(false);
+					return;
 				}else{
-					if(LOGGING_LEVEL > 2){
+					if(LOGGING_LEVEL > 2) {
 						NoSpawnStructures.LOGGER.info("Was going to block spawning at x" + Integer.toString(chunkPos.x) + " z" + Integer.toString(chunkPos.z) + " of structure \"" + struct + "\" (not in blacklist)");
 					}
-					return original.call(structureSelectionEntry,structureManager,registryAccess,randomState,structureTemplateManager,l,chunkAccess,chunkPos,sectionPos);
 				}
 			}else{
 				if(STRUCTURE_LIST.contains(struct)){
 					if(LOGGING_LEVEL > 2){
 						NoSpawnStructures.LOGGER.info("Was going to block spawning at x" + Integer.toString(chunkPos.x) + " z" + Integer.toString(chunkPos.z) + " of structure \"" + struct + "\" (is in whitelist)");
 					}
-					return original.call(structureSelectionEntry,structureManager,registryAccess,randomState,structureTemplateManager,l,chunkAccess,chunkPos,sectionPos);
 				}else{
 					if(LOGGING_LEVEL > 1){
 						NoSpawnStructures.LOGGER.info("Blocked spawning at x" + Integer.toString(chunkPos.x) + " z" + Integer.toString(chunkPos.z) + " of structure \"" + struct + "\"");
 					}
-					return false;
+					callback.setReturnValue(false);
+					return;
 				}
 			}
-		}else{
-			return original.call(structureSelectionEntry,structureManager,registryAccess,randomState,structureTemplateManager,l,chunkAccess,chunkPos,sectionPos);
 		}
 	}
 }
