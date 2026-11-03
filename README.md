@@ -1,0 +1,53 @@
+
+![Poorly drawn Minecraft Steve squints while blocking the sun with his hand, asking "Where?" with a sprite of a Plains biome containing a Village house. The background is the same sprite, scaled up, without the house.](src/main/resources/icon.png)
+No Spawn Structures
+---
+([Curseforge](https://www.curseforge.com/minecraft/mc-mods/nospawnstructs)/[Modrinth](https://modrinth.com/mod/nospawnstructs))\
+A small mod to prevent structures from spawning with a configurable "exclusion zone" surrounding the world origin (`x0`,`z0`), or what is effectively spawn for most worlds.
+
+Also allows whitelisting some structures so that they can still spawn inside the exclusion zone, or blacklisting structures to prevent them from spawning inside the exclusion zone.
+
+The mod is particularly useful for preventing rare structures from spawning right next to spawn within modpacks.
+
+## Modloader Compatibility
+This is a Forge mod for 1.20.1.
+
+I have zero plans to port to Fabric at the moment.
+
+I might backport/forwardport to other major modpack versions. Keyword might.
+
+## Compatibility
+As far as I'm aware, there shouldn't be any real incompatabilities.
+
+If you find any please do open an issue. I can't fix what I don't know about.
+
+## Configuring
+The mod loads its configurations from `nospawnstructs.toml` in the config directory.\
+Every key listed here is also documented inside the config file itself.
+- `CONFIG_VERSION` (Integer): Currently `1`.\
+Used by the mod to determine if your config exists.\
+Don't touch it, at the moment it **will** wipe your configuration if it's less than the current verison.
+- `LOGGING_LEVEL` (Integer): Ranges between `0` and `3`. Defaults to `1`.\
+Determines how much the mod pollutes your log file.
+	- `0`: Absolutely nothing.
+	- `1`: Will warn when it overwrites an invalid config value.
+	- `2`: Will dump the current configuration on startup, and log whenever it prevents a structure from spawning.
+	- `3`: Will additionally log whenever it finds a structure, but doesn't prevent its spawning.
+- `RADIUS` (Double): Must be positive. Defaults to `16.0`.\
+Determines the radius of the exclusion zone.\
+Is defined in Chunks, rather than blocks. The default 16 chunks is actually 256 blocks.
+- `SHAPE` (String): Must be any of `"Circle", "Diamond", "Square"`. Defaults to `"Circle"`.\
+Determines the function used for distance calculation, and by extension the shape of the exclusion zone.
+	- `Circle`: `sqrt(x^2 + z^2)`
+	- `Diamond`: `abs(x) + abs(z)`
+	- `Square`: `max(abs(x),abs(z))`
+- `BLACKLIST` (Boolean): Defaults to `false`.\
+Determines if `STRUCTURE_LIST` is treated as a blacklist/disallowlist instead of a whitelist/allowlist.
+- `STRUCTURE_LIST` (List\<String>): Defaults to `["minecraft:witch_hut"]`\
+A special list of structure resource locations to either allow inside the exclusion zone (if `BLACKLIST` is `false`) or disallow (`BLACKLIST` is `true`).\
+These are specifically the same ids used by the `/locate structure` command.
+
+A word of caution, do not remove or change the types of these configs. The mod **will** hard crash your game with a cryptic `java.lang.IllegalStateException: Rendersystem called from wrong thread` followed by `java.lang.RuntimeException: java.lang.ExceptionInInitializerError`.
+
+## Credits
+The mod was built on top of the base [Forge 1.20.1 MDK](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html).
