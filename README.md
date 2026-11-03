@@ -10,9 +10,21 @@ Also allows whitelisting some structures so that they can still spawn inside the
 The mod is particularly useful for preventing rare structures from spawning right next to spawn within modpacks.
 
 ## Modloader Compatibility
-This is a NeoForge mod for Minecraft 1.21.1.
+This branch is for the 1.21.1 NeoForge version.\
+Below is the current support map.
 
-I have zero plans to port to Fabric. If you want a Fabric version, try out 7bbbbbbb's [No Structure at Spawn](https://github.com/7bbbbbbb/no_structure_at_spawn) ([Curseforge](https://www.curseforge.com/minecraft/mc-mods/no-structure-at-spawn)/[Modrinth](https://modrinth.com/mod/no-structure-at-spawn))
+(❌: Nah. ❓: No, but Potentially. ✅: Yeah. ⬛: Not applicable.)\
+The ✅s should link to their respective branch page. (Excluding this one.)
+| Version | Forge | NeoForge | Fabric |
+| ------- | ----- | -------- | ------ |
+|1.21.1|❌|✅|❌|
+|1.20.1|[✅](https://github.com/DebtPenn70/nospawnstructs/tree/Forge-1.20.1)|❌|❌|
+|1.19.2|❓|⬛|❌|
+|1.16.5|❓|⬛|❌|
+
+I have zero plans to port to Fabric.
+
+If you want a Fabric version for NeoForge 1.21.1, try out 7bbbbbbb's [No Structure at Spawn](https://github.com/7bbbbbbb/no_structure_at_spawn) ([Curseforge](https://www.curseforge.com/minecraft/mc-mods/no-structure-at-spawn)/[Modrinth](https://modrinth.com/mod/no-structure-at-spawn))
 
 I might backport/forwardport to other major modpack versions. Keyword might.
 
@@ -52,4 +64,4 @@ These are specifically the same ids used by the `/locate structure` command.
 A word of caution, do not remove or change the types of these configs. The mod **will** hard crash your game with a cryptic `java.lang.IllegalStateException: Rendersystem called from wrong thread` followed by `java.lang.RuntimeException: java.lang.ExceptionInInitializerError`.
 
 ## Credits
-The mod was built on top of the base [NeoForge 1.21.1 MDK](https://github.com/NeoForgeMDKs/MDK-1.21.1-NeoGradle).
+This version of the mod was built on top of the base [NeoForge 1.21.1 MDK](https://github.com/NeoForgeMDKs/MDK-1.21.1-NeoGradle).
