@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.debtpenn70.nospawnstructs.mixin",
+  "refmap": "nospawnstructs.mixins.refmap.json",
+  "mixins": ["ChunkGeneratorMixin"],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
